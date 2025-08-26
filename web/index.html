@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <!-- Set the base href to reflect the /userfood path -->
-  <base href="/userfood/">
+  <base href="/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -22,13 +22,9 @@
 
   <title>StackFood</title>
   <link rel="manifest" href="manifest.json">
-  
-  <!-- Updated path to style.css -->
-  <link rel="stylesheet" type="text/css" href="/userfood/style.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 
-  <!-- Updated path to web_support.js -->
-  <script type="application/javascript" src="/userfood/assets/packages/flutter_inappwebview_web/assets/web/web_support.js" defer></script>
-
+  <script type="application/javascript" src="/assets/packages/flutter_inappwebview_web/assets/web/web_support.js" defer></script>
   <!--<link rel="canonical" href="https://stackfood-web.6amtech.com/" />-->
 
   <script>
@@ -36,19 +32,25 @@
     var serviceWorkerVersion = {{flutter_service_worker_version}};
   </script>
   <!-- This script adds the flutter initialization JS code -->
-  <script src="/userfood/flutter.js?version=8.3.0" defer></script>
+  <script src="flutter.js?version=8.3.0" defer></script>
 </head>
 <body>
 <!-- This script installs service_worker.js to provide PWA functionality to
      application. For more information, see:
      https://developers.google.com/web/fundamentals/primers/service-workers -->
 
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrv5wxLYxoShNB4h3j_nEVe62sE4Fk8WM"></script> -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrv5wxLYxoShNB4h3j_nEVe62sE4Fk8WM&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrv5wxLYxoShNB4h3j_nEVe62sE4Fk8WM"></script>
 <!--  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>-->
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js"></script>
+
+<!--  <div class="center">-->
+<!--    <img src="logo.png" alt = "logo" height="250px" width="250px" />-->
+<!--    <br>-->
+<!--    <div class="loader" style="width:250px;text-align: center;"><div class="classic-4"></div></div>-->
+<!--  </div>-->
+
 
 <script>
     var firebaseConfig = {
@@ -62,21 +64,20 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-</script>
+  </script>
 
 <!-- Preloader -->
 <div class="preloader">
   <div class="preloader-container">
     <!-- <img width="80" class="preloader-img" src="assets/img/preloader.png" alt=""> -->
     <div id="animation-container">
-      <!-- Updated image paths to include /userfood/ -->
-      <img width="80" height="80" src="/userfood/assets/img/1.png" class="animation-image" alt="" />
-      <img width="80" height="80" src="/userfood/assets/img/2.png" class="animation-image" alt="" />
-      <img width="80" height="80" src="/userfood/assets/img/3.png" class="animation-image" alt="" />
-      <img width="80" height="80" src="/userfood/assets/img/4.png" class="animation-image" alt="" />
-      <img width="80" height="80" src="/userfood/assets/img/5.png" class="animation-image" alt="" />
-      <img width="80" height="80" src="/userfood/assets/img/6.png" class="animation-image" alt="" />
-      <img width="80" height="80" src="/userfood/assets/img/7.png" class="animation-image" alt="" />
+      <img width="80" height="80" src="assets/img/1.png" class="animation-image" alt="" />
+      <img width="80" height="80" src="assets/img/2.png" class="animation-image" alt="" />
+      <img width="80" height="80" src="assets/img/3.png" class="animation-image" alt="" />
+      <img width="80" height="80" src="assets/img/4.png" class="animation-image" alt="" />
+      <img width="80" height="80" src="assets/img/5.png" class="animation-image" alt="" />
+      <img width="80" height="80" src="assets/img/6.png" class="animation-image" alt="" />
+      <img width="80" height="80" src="assets/img/7.png" class="animation-image" alt="" />
     </div>
     <div class="loader"></div>
   </div>
@@ -85,8 +86,7 @@
 <header class="header">
   <div class="header-container d-flex align-items-center justify-content-between">
     <div class="header-start d-flex gap-5 align-items-center">
-      <!-- Updated image path for logo -->
-      <img class="logo" src="/userfood/assets/img/logo.png" alt="" height="50" width="30">
+      <img class="logo" src="assets/img/logo.png" alt="" height="50" width="30">
       <div class="placeholder placeholder-wide"></div>
       <div class="d-flex align-items-center gap-4">
         <div class="placeholder"></div>
@@ -99,11 +99,10 @@
       <div class="placeholder"></div>
       <div class="d-flex align-items-center gap-4">
         <div class="placeholder"></div>
-        <!-- Updated SVG image paths -->
-        <img src="/userfood/assets/img/icon-1.svg" class="svg" alt="">
-        <img src="/userfood/assets/img/icon-2.svg" class="svg" alt="">
-        <img src="/userfood/assets/img/icon-3.svg" class="svg" alt="">
-        <img src="/userfood/assets/img/icon-4.svg" class="svg" alt="">
+        <img src="assets/img/icon-1.svg" class="svg" alt="">
+        <img src="assets/img/icon-2.svg" class="svg" alt="">
+        <img src="assets/img/icon-3.svg" class="svg" alt="">
+        <img src="assets/img/icon-4.svg" class="svg" alt="">
       </div>
     </div>
   </div>
