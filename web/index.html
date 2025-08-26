@@ -13,18 +13,18 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="StackFood">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="apple-touch-icon" href="userfood/assets/icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="userfood/assets/favicon.png"/>
 
   <meta name="google-signin-client_id" content="491987943015-agln6biv84krpnngdphj87jkko7r9lb8.apps.googleusercontent.com">
 
   <title>StackFood</title>
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="manifest" href="userfood/assets/manifest.json">
+  <link rel="stylesheet" type="text/css" href="userfood/assets/style.css">
 
-  <script type="application/javascript" src="/assets/packages/flutter_inappwebview_web/assets/web/web_support.js" defer></script>
+  <script type="application/javascript" src="/userfood/assets/packages/flutter_inappwebview_web/assets/web/web_support.js" defer></script>
   <!--<link rel="canonical" href="https://stackfood-web.6amtech.com/" />-->
 
   <script>
@@ -32,7 +32,7 @@
     var serviceWorkerVersion = {{flutter_service_worker_version}};
   </script>
   <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js?version=8.3.0" defer></script>
+  <script src="userfood/assets/flutter.js?version=8.3.0" defer></script>
 </head>
 <body>
 <!-- This script installs service_worker.js to provide PWA functionality to
@@ -45,39 +45,18 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js"></script>
 
-<!--  <div class="center">-->
-<!--    <img src="logo.png" alt = "logo" height="250px" width="250px" />-->
-<!--    <br>-->
-<!--    <div class="loader" style="width:250px;text-align: center;"><div class="classic-4"></div></div>-->
-<!--  </div>-->
-
-
-<script>
-    var firebaseConfig = {
-      apiKey: "AIzaSyCeaw_gVN0iQwFHyuF8pQ6PbVDmSVQw8AY",
-      authDomain: "stackfood-bd3ee.firebaseapp.com",
-      projectId: "stackfood-bd3ee",
-      storageBucket: "stackfood-bd3ee.appspot.com",
-      messagingSenderId: "1049699819506",
-      appId: "1:1049699819506:web:a4b5e3bedc729aab89956b",
-      measurementId: "G-2QNRKR9K5R"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-  </script>
-
 <!-- Preloader -->
 <div class="preloader">
   <div class="preloader-container">
-    <!-- <img width="80" class="preloader-img" src="assets/img/preloader.png" alt=""> -->
+    <!-- <img width="80" class="preloader-img" src="/userfood/assets/img/preloader.png" alt=""> -->
     <div id="animation-container">
-      <img width="80" height="80" src="assets/img/1.png" class="animation-image" alt="" />
-      <img width="80" height="80" src="assets/img/2.png" class="animation-image" alt="" />
-      <img width="80" height="80" src="assets/img/3.png" class="animation-image" alt="" />
-      <img width="80" height="80" src="assets/img/4.png" class="animation-image" alt="" />
-      <img width="80" height="80" src="assets/img/5.png" class="animation-image" alt="" />
-      <img width="80" height="80" src="assets/img/6.png" class="animation-image" alt="" />
-      <img width="80" height="80" src="assets/img/7.png" class="animation-image" alt="" />
+      <img width="80" height="80" src="userfood/assets/img/2.png" class="animation-image" alt="" />
+      <img width="80" height="80" src="userfood/assets/img/1.png" class="animation-image" alt="" />
+      <img width="80" height="80" src="userfood/assets/img/3.png" class="animation-image" alt="" />
+      <img width="80" height="80" src="userfood/assets/img/4.png" class="animation-image" alt="" />
+      <img width="80" height="80" src="userfood/assets/img/5.png" class="animation-image" alt="" />
+      <img width="80" height="80" src="userfood/assets/img/6.png" class="animation-image" alt="" />
+      <img width="80" height="80" src="userfood/assets/img/7.png" class="animation-image" alt="" />
     </div>
     <div class="loader"></div>
   </div>
@@ -86,7 +65,7 @@
 <header class="header">
   <div class="header-container d-flex align-items-center justify-content-between">
     <div class="header-start d-flex gap-5 align-items-center">
-      <img class="logo" src="assets/img/logo.png" alt="" height="50" width="30">
+      <img class="logo" src="userfood/assets/img/logo.png" alt="" height="50" width="30">
       <div class="placeholder placeholder-wide"></div>
       <div class="d-flex align-items-center gap-4">
         <div class="placeholder"></div>
@@ -99,10 +78,10 @@
       <div class="placeholder"></div>
       <div class="d-flex align-items-center gap-4">
         <div class="placeholder"></div>
-        <img src="assets/img/icon-1.svg" class="svg" alt="">
-        <img src="assets/img/icon-2.svg" class="svg" alt="">
-        <img src="assets/img/icon-3.svg" class="svg" alt="">
-        <img src="assets/img/icon-4.svg" class="svg" alt="">
+        <img src="userfood/assets/img/icon-1.svg" class="svg" alt="">
+        <img src="userfood/assets/img/icon-2.svg" class="svg" alt="">
+        <img src="userfood/assets/img/icon-3.svg" class="svg" alt="">
+        <img src="userfood/assets/img/icon-4.svg" class="svg" alt="">
       </div>
     </div>
   </div>
