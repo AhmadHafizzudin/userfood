@@ -11,7 +11,7 @@ class AppConstants {
   static const String webHostedUrl = 'https://stackfood-web.6amtech.com';
   static const bool useReactWebsite = false;
 
-  static const String baseUrl = 'http://127.0.0.1:8000';
+  static const String baseUrl = 'http://13.229.132.51:8000';
   static const String categoryUri = '/api/v1/categories';
   static const String bannerUri = '/api/v1/banners';
   static const String restaurantProductUri = '/api/v1/products/latest';
