@@ -40,6 +40,15 @@
 
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrv5wxLYxoShNB4h3j_nEVe62sE4Fk8WM"></script> -->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrv5wxLYxoShNB4h3j_nEVe62sE4Fk8WM&callback=initMap"></script>
+
+<script>
+    function initMap() {
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+      });
+    }
+  </script>
 <!--  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>-->
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
