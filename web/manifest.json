@@ -1,6 +1,6 @@
 {
-    "name": "StackFood",
-    "short_name": "StackFood",
+    "name": "Kawanku Food",
+    "short_name": "KawanFood",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#EF7822",
