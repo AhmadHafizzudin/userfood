@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:html' as html; // ✅ for setting browser tab title
+
 import 'package:stackfood_multivendor/features/auth/controllers/auth_controller.dart';
 import 'package:stackfood_multivendor/features/cart/controllers/cart_controller.dart';
 import 'package:stackfood_multivendor/features/language/controllers/localization_controller.dart';
@@ -27,36 +29,31 @@ import 'package:meta_seo/meta_seo.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'helper/get_di.dart' as di;
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
-  if(ResponsiveHelper.isMobilePhone()) {
+  if (ResponsiveHelper.isMobilePhone()) {
     HttpOverrides.global = MyHttpOverrides();
   }
   setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
 
-  // // Pass all uncaught "fatal" errors from the framework to Crashlytics
-  // FlutterError.onError = (errorDetails) {
-  //   FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-  // };
-  // // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
-  // PlatformDispatcher.instance.onError = (error, stack) {
-  //   FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-  //   return true;
-  // };
-
   DeepLinkBody? linkBody;
 
-  if(GetPlatform.isWeb) {
-    await Firebase.initializeApp(options: const FirebaseOptions(
+  if (GetPlatform.isWeb) {
+    await Firebase.initializeApp(
+        options: const FirebaseOptions(
       apiKey: 'AIzaSyCc3OCd5I2xSlnftZ4bFAbuCzMhgQHLivA',
       appId: '1:491987943015:android:fe79b69339834d5c8f1ec2',
       messagingSenderId: '491987943015',
       projectId: 'stackmart-500c7',
     ));
     MetaSEO().config();
-  }else if(GetPlatform.isAndroid) {
+
+    // ✅ Force browser tab title
+    html.document.title = AppConstants.appName;
+  } else if (GetPlatform.isAndroid) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
         apiKey: 'AIzaSyCc3OCd5I2xSlnftZ4bFAbuCzMhgQHLivA',
@@ -74,14 +71,15 @@ Future<void> main() async {
   NotificationBodyModel? body;
   try {
     if (GetPlatform.isMobile) {
-      final RemoteMessage? remoteMessage = await FirebaseMessaging.instance.getInitialMessage();
+      final RemoteMessage? remoteMessage =
+          await FirebaseMessaging.instance.getInitialMessage();
       if (remoteMessage != null) {
         body = NotificationHelper.convertNotification(remoteMessage.data);
       }
       await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
       FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
     }
-  }catch(_) {}
+  } catch (_) {}
 
   if (ResponsiveHelper.isWeb()) {
     await FacebookAuth.instance.webAndDesktopInitialize(
@@ -98,28 +96,37 @@ class MyApp extends StatefulWidget {
   final Map<String, Map<String, String>>? languages;
   final NotificationBodyModel? body;
   final DeepLinkBody? linkBody;
-  const MyApp({super.key, required this.languages, required this.body, required this.linkBody});
+  const MyApp(
+      {super.key,
+      required this.languages,
+      required this.body,
+      required this.linkBody});
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
-
     _route();
+
+    // ✅ Ensure title stays correct when app starts
+    if (GetPlatform.isWeb) {
+      html.document.title = AppConstants.appName;
+    }
   }
 
   Future<void> _route() async {
-    if(GetPlatform.isWeb) {
+    if (GetPlatform.isWeb) {
       Get.find<SplashController>().initSharedData();
-      if(!Get.find<AuthController>().isLoggedIn() && !Get.find<AuthController>().isGuestLoggedIn() /*&& !ResponsiveHelper.isDesktop(Get.context!)*/) {
+      if (!Get.find<AuthController>().isLoggedIn() &&
+          !Get.find<AuthController>().isGuestLoggedIn()) {
         await Get.find<AuthController>().guestLogin();
       }
-      if(Get.find<AuthController>().isLoggedIn() || Get.find<AuthController>().isGuestLoggedIn()) {
+      if (Get.find<AuthController>().isLoggedIn() ||
+          Get.find<AuthController>().isGuestLoggedIn()) {
         Get.find<CartController>().getCartDataOnline();
       }
       Get.find<SplashController>().getConfigData(fromMainFunction: true);
@@ -132,45 +139,66 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
     return GetBuilder<ThemeController>(builder: (themeController) {
       return GetBuilder<LocalizationController>(builder: (localizeController) {
         return GetBuilder<SplashController>(builder: (splashController) {
-          return (GetPlatform.isWeb && splashController.configModel == null) ? const SizedBox() : GetMaterialApp(
-            title: AppConstants.appName,
-            debugShowCheckedModeBanner: false,
-            navigatorKey: Get.key,
-            scrollBehavior: const MaterialScrollBehavior().copyWith(
-              dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch},
-            ),
-            theme: themeController.darkTheme ? dark : light,
-            locale: localizeController.locale,
-            translations: Messages(languages: widget.languages),
-            fallbackLocale: Locale(AppConstants.languages[0].languageCode!, AppConstants.languages[0].countryCode),
-            initialRoute: GetPlatform.isWeb ? RouteHelper.getInitialRoute() : RouteHelper.getSplashRoute(widget.body, widget.linkBody),
-            getPages: RouteHelper.routes,
-            defaultTransition: Transition.topLevel,
-            transitionDuration: const Duration(milliseconds: 500),
-            builder: (BuildContext context, widget) {
-              return MediaQuery(data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1)), child: Material(
-                child: SafeArea(
-                  top: false, bottom: GetPlatform.isAndroid,
-                  child: Stack(children: [
-                    widget!,
+          return (GetPlatform.isWeb &&
+                  splashController.configModel == null)
+              ? const SizedBox()
+              : GetMaterialApp(
+                  title: AppConstants.appName,
+                  debugShowCheckedModeBanner: false,
+                  navigatorKey: Get.key,
+                  scrollBehavior: const MaterialScrollBehavior().copyWith(
+                    dragDevices: {
+                      PointerDeviceKind.mouse,
+                      PointerDeviceKind.touch
+                    },
+                  ),
+                  theme: themeController.darkTheme ? dark : light,
+                  locale: localizeController.locale,
+                  translations: Messages(languages: widget.languages),
+                  fallbackLocale: Locale(
+                      AppConstants.languages[0].languageCode!,
+                      AppConstants.languages[0].countryCode),
+                  initialRoute: GetPlatform.isWeb
+                      ? RouteHelper.getInitialRoute()
+                      : RouteHelper.getSplashRoute(
+                          widget.body, widget.linkBody),
+                  getPages: RouteHelper.routes,
+                  defaultTransition: Transition.topLevel,
+                  transitionDuration: const Duration(milliseconds: 500),
+                  builder: (BuildContext context, widget) {
+                    return MediaQuery(
+                        data: MediaQuery.of(context).copyWith(
+                            textScaler: const TextScaler.linear(1)),
+                        child: Material(
+                          child: SafeArea(
+                            top: false,
+                            bottom: GetPlatform.isAndroid,
+                            child: Stack(children: [
+                              widget!,
 
-                    GetBuilder<SplashController>(builder: (splashController){
-
-                      if(!splashController.savedCookiesData || !splashController.getAcceptCookiesStatus(splashController.configModel?.cookiesText ?? "")){
-                        return ResponsiveHelper.isWeb() ? const Align(alignment: Alignment.bottomCenter, child: CookiesViewWidget()) : const SizedBox();
-                      }else{
-                        return const SizedBox();
-                      }
-                    })
-                  ]),
-                )),
-              );
-            }
-          );
+                              GetBuilder<SplashController>(
+                                  builder: (splashController) {
+                                if (!splashController.savedCookiesData ||
+                                    !splashController.getAcceptCookiesStatus(
+                                        splashController
+                                                .configModel?.cookiesText ??
+                                            "")) {
+                                  return ResponsiveHelper.isWeb()
+                                      ? const Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child: CookiesViewWidget())
+                                      : const SizedBox();
+                                } else {
+                                  return const SizedBox();
+                                }
+                              })
+                            ]),
+                          ),
+                        ));
+                  });
         });
       });
     });
@@ -180,6 +208,8 @@ class _MyAppState extends State<MyApp> {
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
