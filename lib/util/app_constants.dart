@@ -3,7 +3,7 @@ import 'package:stackfood_multivendor/util/images.dart';
 import 'package:get/get.dart';
 
 class AppConstants {
-  static const String appName = 'TestUser';
+  static const String appName = 'Kawanku Food';
   static const double appVersion = 8.3; ///Flutter SDK: 3.32.7
 
   static const String fontFamily = 'Roboto';
