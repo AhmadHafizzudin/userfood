@@ -10,7 +10,7 @@ class AppConstants {
   static const bool payInWevView = false;
   static const String webHostedUrl = 'https://admin.kawanku.app/';
   static const bool useReactWebsite = false;
-
+  
   static const String baseUrl = 'https://admin.kawanku.app';
   static const String categoryUri = '/api/v1/categories';
   static const String bannerUri = '/api/v1/banners';
