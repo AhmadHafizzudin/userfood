@@ -8,10 +8,12 @@ class AppConstants {
 
   static const String fontFamily = 'Roboto';
   static const bool payInWevView = false;
-  static const String webHostedUrl = 'https://admin.kawanku.app/';
+  // static const String webHostedUrl = 'https://admin.kawanku.app/';
+  static const String webHostedUrl = 'http://127.0.0.1:8000/';
   static const bool useReactWebsite = false;
   
-  static const String baseUrl = 'https://admin.kawanku.app';
+  static const String baseUrl = 'http://127.0.0.1:8000/';
+  // static const String baseUrl = 'https://admin.kawanku.app';
   static const String categoryUri = '/api/v1/categories';
   static const String bannerUri = '/api/v1/banners';
   static const String restaurantProductUri = '/api/v1/products/latest';
