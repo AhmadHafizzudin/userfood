@@ -331,10 +331,11 @@ class _PaymentMethodBottomSheet2State extends State<PaymentMethodBottomSheet2> {
 -        && !checkoutController.subscriptionOrder
 -        && Get.find<ProfileController>().userInfoModel != null
 -        && Get.find<ProfileController>().userInfoModel!.walletBalance! > 0 ? Column(children: [
-+    return Get.find<SplashController>().configModel!.customerWalletStatus == 1
-+        && !checkoutController.subscriptionOrder
-+        && Get.find<ProfileController>().userInfoModel != null
-+        && Get.find<ProfileController>().userInfoModel!.walletBalance! > 0 ? Column(children: [
++    return Get.find<SplashController>().configModel!.partialPaymentStatus! && !checkoutController.subscriptionOrder
+        && Get.find<SplashController>().configModel!.customerWalletStatus == 1
+        && !checkoutController.subscriptionOrder
+        && Get.find<ProfileController>().userInfoModel != null
+        && Get.find<ProfileController>().userInfoModel!.walletBalance! > 0 ? Column(children: [
       Container(
         padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
         margin: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
