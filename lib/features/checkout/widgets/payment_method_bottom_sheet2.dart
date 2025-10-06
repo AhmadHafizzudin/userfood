@@ -325,11 +325,16 @@ class _PaymentMethodBottomSheet2State extends State<PaymentMethodBottomSheet2> {
       balance = walletBalance - widget.totalPrice;
     }
     bool isWalletSelected = checkoutController.paymentMethodIndex == 1 || checkoutController.isPartialPay;
-
-    return Get.find<SplashController>().configModel!.partialPaymentStatus! && !checkoutController.subscriptionOrder
-        && Get.find<SplashController>().configModel!.customerWalletStatus == 1
-        && Get.find<ProfileController>().userInfoModel != null && (checkoutController.distance != -1)
-        && Get.find<ProfileController>().userInfoModel!.walletBalance! > 0 ? Column(children: [
+ 
+-    return Get.find<SplashController>().configModel!.partialPaymentStatus! && !checkoutController.subscriptionOrder
+-        && Get.find<SplashController>().configModel!.customerWalletStatus == 1
+-        && !checkoutController.subscriptionOrder
+-        && Get.find<ProfileController>().userInfoModel != null
+-        && Get.find<ProfileController>().userInfoModel!.walletBalance! > 0 ? Column(children: [
++    return Get.find<SplashController>().configModel!.customerWalletStatus == 1
++        && !checkoutController.subscriptionOrder
++        && Get.find<ProfileController>().userInfoModel != null
++        && Get.find<ProfileController>().userInfoModel!.walletBalance! > 0 ? Column(children: [
       Container(
         padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
         margin: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
